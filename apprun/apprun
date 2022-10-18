@@ -1,0 +1,84 @@
+#!/bin/bash
+
+#
+# AppImage runner without changing name.
+#
+# When using AppImage, after copying newer version, and set rights, just delete old one.
+# This way you always know which version of executable you have.
+#
+# 1. you have file, for example:
+#
+#    > application_name-1.2.4-AppImage
+#
+# 2. create decoy file with name only, for example:
+#
+#    > application_name
+#
+#    Put in it:
+#
+#    #!/usr/bin/bash
+#    apprun "$0"
+#
+#    Change rights, and it's ready to run.
+#
+# 3. To run app type "application_name" or "apprun application_name"
+#    You don't have to worry about version naming anymore.
+#    Usefull for scripts. So :
+#
+#    > apprun application_name
+#    or
+#    > application_name
+#
+# if you wanna desktop entry add it to directory:
+# ~/.local/share/applications/appname.desktop
+#
+# TODO
+# - check file rights
+# - sort by version and ask or run newest one
+# 
+
+# exit if no application name given
+if [ $# -ne 1 ]; then
+    echo "application name please..."
+    exit 0
+fi
+
+# get directory from commandline parameter
+DIR=$(echo $1 | awk -F'/' '{ for(i=1;i<=NF-1;i++) printf $i"/"; print ""}')
+
+# if there are no directory in commandline parameter use scipt directory
+if [ ${#DIR} -eq 0 ]; then
+    DIR=$(echo $0 | awk -F'/' '{ for(i=1;i<=NF-1;i++) printf $i"/"; print ""}')
+fi
+
+# get application name
+APPNAME=$(echo $1 | awk -F'/' '{ print $NF }')
+cd $DIR
+
+# search first file in $DIR directory that starts with given name
+FILENAME=$(find . -type f -iname "$APPNAME*" | cut -c 3- | grep -v ^"$APPNAME"$)
+FILEPATH="$DIR$FILENAME"
+
+# DEBUG START
+# echo $APPNAME
+# echo $DIR
+# echo $FILENAME
+# echo $FILEPATH
+# exit 0
+# DEBUG END
+
+if [ ! -f $FILEPATH ]; then
+
+    echo "File not found! :  $FILEPATH"
+    # notify-send "File not found!" "$FILEPATH" -t 2500
+
+else
+
+    pushd $DIR
+    # notify-send "Running" "$FILEPATH" -t 2500
+    ./"$FILENAME" "$@"
+    popd
+
+fi
+
+

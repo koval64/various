@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# pushd "$HOME/.local/bin"
+# ./lmms-1.3.0-alpha.1.102+g89fc6c9-linux-x86_64.AppImage "$@"
+# popd
+apprun "$0"
+
