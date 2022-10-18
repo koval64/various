@@ -23,7 +23,7 @@ Copy part of Koala format image to another.
 Example input images:
 
 ![Screenshot](koala-copy-paste/example_png_converted/img_to_copy_from.png)
-![Screenshot](koala-copy-paste/example_png_converted/imt_to_copy_to.png)
+![Screenshot](koala-copy-paste/example_png_converted/img_to_copy_to.png)
 
 Output:
 
