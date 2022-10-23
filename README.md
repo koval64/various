@@ -3,10 +3,10 @@
 
 bash script
 
-AppImage run helper.
-Script searches in its directory given as argument file that are longer
-than given name and tries to run it. Thanks to this you can put
-*.desktop entry in config directory, and run it from system applications menu.
+AppImage run helper.  
+Script searches in its directory given as argument file name that has longer name
+than given one and tries to run it. Thanks to this you can put *.desktop entry
+in config directory, and run it from system applications menu.
 
 # encode_mp3
 
@@ -20,7 +20,7 @@ and run "encode.sh" scipt to get mp3s with preformated file names.
 
 python 3, terminal
 
-Copy part of one Koala format image to another.
+Copy part of one Koala format image in to another.
 
 Example input images:
 
@@ -72,7 +72,7 @@ Draw lines using bresenham algorithm using whole numbers ( no floating point ).
 bash + rofi
 
 Custom Scripts Runner - graphics menu for running scripts and applications.
-Scripts are stored inside $UDIR variable folder inside script.
+Scripts are stored in $UDIR folder variable. Variable is located inside script.
 
 ![Screenshot](screenshots/csr.png)
 
